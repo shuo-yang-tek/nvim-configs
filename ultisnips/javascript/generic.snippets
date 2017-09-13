@@ -1,0 +1,47 @@
+snippet cl "console.log(...)" b
+console.log(${0:/* ... */});
+endsnippet
+
+snippet rq "const xxx = require('...')" b
+const `!p
+
+import re
+
+tokens = re.findall('([a-zA-Z]+)(?:-|$)', t[1]);
+result = ''
+
+for idx, tok in enumerate(tokens):
+   if idx == 0:
+      result += tok
+   else:
+      result += '{}{}'.format(tok[:1].upper(), tok[1:])
+
+snip.rv = result
+
+` = require('${1:/* ... */}');
+$0
+endsnippet
+
+snippet ip "import xxx from '...'" b
+import `!p
+
+import re
+
+tokens = re.findall('([a-zA-Z]+)(?:-|$)', t[1]);
+result = ''
+
+for idx, tok in enumerate(tokens):
+   if idx == 0:
+      result += tok
+   else:
+      result += '{}{}'.format(tok[:1].upper(), tok[1:])
+
+snip.rv = result
+
+` from '${1:/* ... */}';
+$0
+endsnippet
+
+snippet me "module.exports = ..." b
+module.exports = ${0:/* ... */};
+endsnippet

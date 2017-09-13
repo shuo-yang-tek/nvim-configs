@@ -99,7 +99,7 @@ let g:syntastic_pug_checkers = ['pug_lint']        " needs to install pug-lint w
 let g:syntastic_less_checkers = ['recess']         " needs to install recess with npm
 
 " ultisnips
-let g:UltiSnipsSnippetDirectories = ['snippets-mine']
+let g:UltiSnipsSnippetDirectories = ['ultisnips']
 let g:UltiSnipsExpandTrigger = '<c-t>'
 
 " vim-javascript
