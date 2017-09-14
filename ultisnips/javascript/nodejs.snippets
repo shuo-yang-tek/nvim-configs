@@ -1,18 +1,18 @@
-snippet rj "res.json({...})" b
+snippet rj "res.json({...})" i
 res.json({
    message: 'success',
    $0
 });
 endsnippet
 
-snippet rsj "res.status(...).json({...})" b
+snippet rsj "res.status(...).json({...})" i
 res.status(${1:/* ... */}).json({
    message: '${2:/* ... */}',
    $0
 });
 endsnippet
 
-snippet ajv "create ajv schema" b
+snippet ajv "create ajv schema" i
 {
    required: [${1:/* ... */}],
    properties: {$0`!p

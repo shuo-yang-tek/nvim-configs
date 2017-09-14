@@ -30,19 +30,19 @@ else:
 $0
 endsnippet
 
-snippet cn "className=..." b
+snippet cn "className=..." i
 className=${0:/* ... */}
 endsnippet
 
-snippet ock "onClick={ ... }" b
+snippet ock "onClick={ ... }" i
 onClick={ ${0:/* ... */} }
 endsnippet
 
-snippet ocg "onChange={ ... }" b
+snippet ocg "onChange={ ... }" i
 onChange={ ${0:/* ... */} }
 endsnippet
 
-snippet ops "onPress={ ... }" b
+snippet ops "onPress={ ... }" i
 onPress={ ${0:/* ... */} }
 endsnippet
 
@@ -92,9 +92,21 @@ class ${1:/* componentName */} extends Component {
 const styles = {
 };
 
+`!p
+snip.rv = t[1]
+`.propTypes = {
+   ${2:/* ... */}
+}
+
+`!p
+snip.rv = t[1]
+`.defaultProps = {
+   ${3:/* ... */}
+}
+
 export default connect(
    state => ({
-      ${2:/* ... */}
+      ${4:/* ... */}
    }),
    dispatch => ({
    })
@@ -138,6 +150,7 @@ export function reducer(state = DEFAULT_STATE, action) {
 
 export const Actions = {`!p
 
+from collections import OrderedDict
 import re
 snip >> 1
 
@@ -150,6 +163,7 @@ contents = t[3].split('case')
 vals = {}
 for idx, key in enumerate(keys):
    vals[key] = re.findall('(?:action\.)([a-zA-Z_][a-zA-Z0-9_]*)', contents[idx + 1])
+   vals[key] = list(OrderedDict.formkey(vals[key]))
 
 for key in keys:
    snip += '{}: ({}) => ({{'.format(key, ', '.join(vals[key]))
