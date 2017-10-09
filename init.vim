@@ -10,12 +10,18 @@ call plug#begin('~/.local/share/nvim/plugged')
    Plug 'nathanaelkane/vim-indent-guides'
    Plug 'simnalamburt/vim-mundo'
    Plug 'ap/vim-buftabline'
+	 Plug 'cloudhead/neovim-fuzzy'
 
    " auto-complete
    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
    " syntastic
    Plug 'vim-syntastic/syntastic'
+	 Plug 'mtscout6/syntastic-local-eslint.vim'
+
+	 " markdown
+	 Plug 'godlygeek/tabular'
+	 Plug 'plasticboy/vim-markdown'
 
    " javascript
    Plug 'pangloss/vim-javascript'
@@ -37,6 +43,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 
    " snips
    Plug 'SirVer/ultisnips'
+
+	 " graphQL
+	 Plug 'jparise/vim-graphql'
+
+	 " gitignore
+	 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+	 Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
+
 call plug#end()
 
 " some generic requires
@@ -107,8 +121,14 @@ let g:javascript_plugin_jsdoc=1
 set cino=:0
 
 " deoplete-ternjs
+let g:deoplete#sources#ternjs#types=1
+let g:deoplete#sources#ternjs#depths=1
+let g:deoplete#sources#ternjs#docs=1
 " let g:tern#command=["tern"]
 " let g:tern#arguments=["--persistent"]
+
+" vim-markdown
+let g:vim_markdown_new_list_item_indent=2
 
 " auto-complete menu select with TAB
 inoremap <expr><TAB> pumvisible() ? "\<CR>" : "\<TAB>"
@@ -131,6 +151,8 @@ set hlsearch
 set smartcase
 
 set wrap
+set breakindent
+set showbreak=>>>
 set linebreak
 set nolist
 
@@ -138,12 +160,12 @@ set foldmethod=indent
 set foldnestmax=100
 set nofoldenable
 
-set expandtab
-set shiftwidth=3
-set softtabstop=3
+set noexpandtab
+set tabstop=2
+set shiftwidth=2
 set cindent
 
-set completeopt-=preview
+"set completeopt-=preview
 
 " close auto-complete hint window when exit insert mode
 autocmd InsertLeave * pclose
@@ -169,6 +191,8 @@ nnoremap <C-Left> :vertical resize -1<CR>
 nnoremap <C-Right> :vertical resize +1<CR>
 nnoremap <C-Down> :resize -1<CR>
 nnoremap <C-Up> :resize +1<CR>
+
+nnoremap <C-p> :FuzzyOpen<CR>
 
 " diff
 if &diff
