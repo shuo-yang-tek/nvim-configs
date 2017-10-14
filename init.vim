@@ -25,7 +25,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
    " javascript
    Plug 'pangloss/vim-javascript'
-   Plug 'carlitux/deoplete-ternjs'
+   Plug 'shuo-yang-tek/deoplete-ternjs'
    Plug 'othree/jspc.vim'
 
    " jsx
@@ -124,8 +124,6 @@ set cino=:0
 let g:deoplete#sources#ternjs#types=1
 let g:deoplete#sources#ternjs#depths=1
 let g:deoplete#sources#ternjs#docs=1
-" let g:tern#command=["tern"]
-" let g:tern#arguments=["--persistent"]
 
 " vim-markdown
 let g:vim_markdown_new_list_item_indent=2
@@ -164,6 +162,8 @@ set noexpandtab
 set tabstop=2
 set shiftwidth=2
 set cindent
+
+set lazyredraw
 
 "set completeopt-=preview
 
