@@ -6,7 +6,7 @@ call plug#begin('~/.local/share/nvim/plugged')
    Plug 'majutsushi/tagbar'
    Plug 'jiangmiao/auto-pairs'
    Plug 'scrooloose/nerdcommenter'
-   Plug 'itchyny/lightline.vim'
+	 Plug 'itchyny/lightline.vim'
    Plug 'nathanaelkane/vim-indent-guides'
    Plug 'simnalamburt/vim-mundo'
    Plug 'ap/vim-buftabline'
@@ -25,8 +25,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
    " javascript
    Plug 'pangloss/vim-javascript'
-   Plug 'shuo-yang-tek/deoplete-ternjs'
    Plug 'othree/jspc.vim'
+	 Plug 'carlitux/deoplete-ternjs'
 
    " jsx
    Plug 'chemzqm/vim-jsx-improve'
