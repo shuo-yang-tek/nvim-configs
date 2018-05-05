@@ -11,13 +11,21 @@ call plug#begin('~/.local/share/nvim/plugged')
    Plug 'simnalamburt/vim-mundo'
    Plug 'ap/vim-buftabline'
 	 Plug 'cloudhead/neovim-fuzzy'
+	 Plug 'MattesGroeger/vim-bookmarks'
+
+	 " local_vimrc
+	 Plug 'LucHermitte/lh-vim-lib'
+	 Plug 'LucHermitte/local_vimrc'
 
    " auto-complete
    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
    " syntastic
-   Plug 'vim-syntastic/syntastic'
-	 Plug 'mtscout6/syntastic-local-eslint.vim'
+   "Plug 'vim-syntastic/syntastic'
+	 "Plug 'mtscout6/syntastic-local-eslint.vim'
+
+	 " neomake
+	 Plug 'neomake/neomake'
 
 	 " markdown
 	 Plug 'godlygeek/tabular'
@@ -35,11 +43,15 @@ call plug#begin('~/.local/share/nvim/plugged')
    Plug 'digitaltoad/vim-pug'
    Plug 'padawan-php/deoplete-padawan'
 
+	 " handlebars
+   Plug 'mustache/vim-mustache-handlebars'
+
    " diff
    Plug 'chrisbra/vim-diff-enhanced'
 
    " colors
    Plug 'danilo-augusto/vim-afterglow'
+	 Plug 'jacoborus/tender.vim'
 
    " snips
    Plug 'SirVer/ultisnips'
@@ -51,6 +63,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 	 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 	 Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
+	 " fzf.vim
+	 Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " some generic requires
@@ -61,6 +76,7 @@ syntax on
 " colors
 set termguicolors
 colorscheme afterglow
+"colorscheme tender
 
 " lightline
 let g:lightline = {
@@ -74,8 +90,19 @@ let g:indent_guides_auto_colors=0
 hi IndentGuidesOdd guibg=#535353
 hi IndentGuidesEven guibg=#9a9a9a
 
+" local_vimrc
+let g:local_vimrc = ['.vimrc_local.vim', '_vimrc_local.vim']
+
 " nerdtree
 nnoremap ze :NERDTreeToggle<CR>
+
+" vim-bookmarks
+let g:bookmark_no_default_key_mappings = 1
+nnoremap <leader>m<space> :BookmarkToggle<cr>
+nnoremap <leader>ma :BookmarkShowAll<cr>
+nnoremap <leader>mc :BookmarkClear<cr>
+nnoremap <leader>m<up> :BookmarkPrev<cr>
+nnoremap <leader>m<down> :BookmarkNext<cr>
 
 " mundo
 let g:mundo_right=1
@@ -98,19 +125,27 @@ let g:deoplete#omni#functions.javascript = [
    \]
 
 " syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
-let g:syntastic_javascript_checkers = ['eslint']   " needs to install jshint with npm
-let g:syntastic_php_checkers = ['php']
-let g:syntastic_pug_checkers = ['pug_lint']        " needs to install pug-lint with npm
-let g:syntastic_less_checkers = ['recess']         " needs to install recess with npm
+"let g:syntastic_javascript_checkers = ['eslint']   " needs to install jshint with npm
+"let g:syntastic_php_checkers = ['php']
+"let g:syntastic_pug_checkers = ['pug_lint']        " needs to install pug-lint with npm
+"let g:syntastic_less_checkers = ['recess']         " needs to install recess with npm
+
+" neomake
+call neomake#configure#automake('rw')
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+let g:neomake_open_list = 2
+let g:neomake_list_height = 1
 
 " ultisnips
 let g:UltiSnipsSnippetDirectories = ['ultisnips']
@@ -192,7 +227,8 @@ nnoremap <C-Right> :vertical resize +1<CR>
 nnoremap <C-Down> :resize -1<CR>
 nnoremap <C-Up> :resize +1<CR>
 
-nnoremap <C-p> :FuzzyOpen<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <C-f> :Ag<CR>
 
 " diff
 if &diff
