@@ -52,6 +52,8 @@ call plug#begin('~/.local/share/nvim/plugged')
    " colors
    Plug 'danilo-augusto/vim-afterglow'
 	 Plug 'jacoborus/tender.vim'
+	 Plug 'cseelus/vim-colors-lucid'
+	 Plug 'goatslacker/mango.vim'
 
    " snips
    Plug 'SirVer/ultisnips'
@@ -75,8 +77,8 @@ syntax on
 
 " colors
 set termguicolors
+set background=dark
 colorscheme afterglow
-"colorscheme tender
 
 " lightline
 let g:lightline = {
@@ -229,6 +231,8 @@ nnoremap <C-Up> :resize +1<CR>
 
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Ag<CR>
+
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 
 " diff
 if &diff
